@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happiffie - Reverse Auction Engine</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Background glow effects -->
+  <div class="glow-bg-1"></div>
+  <div class="glow-bg-2"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="main-header">
+      <div class="logo">
+        <span class="logo-accent">Happiffie</span> Reverse Auction
+      </div>
+      <nav class="role-nav">
+        <button id="btn-client-view" class="nav-tab active">
+          <i data-lucide="user"></i> Client Dashboard
+        </button>
+        <button id="btn-vendor-view" class="nav-tab">
+          <i data-lucide="store"></i> Vendor Portal
+        </button>
+      </nav>
+    </header>
+
+    <main class="dashboard-content">
+      <!-- CLIENT VIEW -->
+      <section id="client-section" class="view-section active-view">
+        <div class="grid-layout">
+          <!-- Left Column: Post Requirement Form -->
+          <div class="card glass-card form-column animate-slide-in">
+            <div class="card-header">
+              <i data-lucide="file-plus" class="header-icon"></i>
+              <h2>Post Event Requirement</h2>
+            </div>
+            <form id="post-requirement-form">
+              <div class="form-group">
+                <label for="req-title">Requirement Title</label>
+                <input type="text" id="req-title" placeholder="e.g. Wedding Decorator, Chennai" required>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="req-category">Category</label>
+                  <select id="req-category" required>
+                    <option value="decor">Decoration</option>
+                    <option value="catering">Catering</option>
+                    <option value="photography">Photography</option>
+                    <option value="planning">Event Planning</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="req-location">Location</label>
+                  <input type="text" id="req-location" placeholder="e.g. Chennai" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="req-guests">Guest Count</label>
+                  <input type="number" id="req-guests" min="1" placeholder="e.g. 500" required>
+                </div>
+                <div class="form-group">
+                  <label for="req-budget">Budget (₹)</label>
+                  <input type="number" id="req-budget" min="1000" placeholder="e.g. 500000" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="req-theme">Theme/Style</label>
+                  <input type="text" id="req-theme" placeholder="e.g. Traditional Mandapam" required>
+                </div>
+                <div class="form-group">
+                  <label for="req-hours">Auction Deadline (Hours)</label>
+                  <input type="number" id="req-hours" min="1" max="168" value="24" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="req-desc">Details & Description</label>
+                <textarea id="req-desc" rows="3" placeholder="Tell vendors more about your preferences, timelines, setup etc..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">
+                <i data-lucide="send"></i> Post & Open Reverse Auction
+              </button>
+            </form>
+          </div>
+
+          <!-- Right Column: Requirement List & Live Bids -->
+          <div class="dashboard-right">
+            <!-- Requirement List Card -->
+            <div class="card glass-card animate-slide-in delay-1">
+              <div class="card-header">
+                <i data-lucide="list-todo" class="header-icon"></i>
+                <h2>Your Requirements</h2>
+              </div>
+              <div id="requirements-list" class="list-container">
+                <!-- Requirements will be rendered here -->
+                <div class="loading-state">
+                  <div class="spinner"></div>
+                  <span>Loading requirements...</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bids Ranking Card (Shows when a requirement is selected) -->
+            <div id="bids-ranking-card" class="card glass-card animate-slide-in delay-2 hidden">
+              <div class="card-header bids-card-header">
+                <div class="header-title">
+                  <i data-lucide="bar-chart-3" class="header-icon"></i>
+                  <h2>Live Ranked Bids</h2>
+                </div>
+                <span id="selected-req-badge" class="badge"></span>
+              </div>
+              <div class="selected-req-summary">
+                <h3 id="selected-req-title">Wedding Decorator, Chennai</h3>
+                <div class="meta-row">
+                  <span id="selected-req-budget">Budget: ₹5,00,000</span>
+                  <span id="selected-req-deadline">Closes in: 23 hrs</span>
+                </div>
+              </div>
+              
+              <!-- Auction Winner Card (if accepted) -->
+              <div id="auction-result-banner" class="auction-result-card hidden">
+                <div class="winner-icon-wrap">
+                  <i data-lucide="trophy" class="trophy-icon"></i>
+                </div>
+                <div class="winner-details">
+                  <h4>Auction Completed!</h4>
+                  <p id="winner-text">Winning Bid by <strong>Elite Decorators</strong> at <strong>₹4,80,000</strong></p>
+                  <p id="savings-text" class="savings-amount">Total Savings: ₹20,000 (4.0%)</p>
+                </div>
+              </div>
+
+              <div id="bids-list" class="bids-list-container">
+                <!-- Ranked bids will be rendered here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VENDOR VIEW -->
+      <section id="vendor-section" class="view-section">
+        <div class="grid-layout">
+          <!-- Left Column: Open Auctions for Category -->
+          <div class="card glass-card list-column animate-slide-in">
+            <div class="card-header">
+              <i data-lucide="activity" class="header-icon"></i>
+              <h2>Live Auctions</h2>
+            </div>
+            <div id="vendor-auctions-list" class="list-container">
+              <!-- Auctions available to bid on -->
+            </div>
+          </div>
+
+          <!-- Right Column: Bid Submission Form -->
+          <div id="vendor-bid-submission" class="card glass-card form-column animate-slide-in delay-1 hidden">
+            <div class="card-header">
+              <i data-lucide="gavel" class="header-icon"></i>
+              <h2>Submit Competing Bid</h2>
+            </div>
+            <div class="vendor-auction-info">
+              <h3 id="bid-target-title">Requirement Title</h3>
+              <div class="meta-row">
+                <span id="bid-target-budget">Budget: ₹5,00,000</span>
+                <span id="bid-target-deadline">Time Left: 24h</span>
+              </div>
+              <p id="bid-target-desc">Description of the requirements...</p>
+            </div>
+
+            <form id="submit-bid-form">
+              <div class="form-group">
+                <label for="bid-vendor-select">Identify as Vendor</label>
+                <select id="bid-vendor-select" required>
+                  <option value="">-- Choose Vendor --</option>
+                  <!-- Populate dynamic vendors here -->
+                </select>
+                <div id="vendor-preview-stats" class="vendor-mini-stats hidden">
+                  <span>Rating: <strong id="mini-rating">4.8★</strong></span>
+                  <span>Resp Rate: <strong id="mini-resp-rate">95%</strong></span>
+                  <span>Resp Count: <strong id="mini-resp-count">45</strong></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="bid-price">Bid Price (₹)</label>
+                <input type="number" id="bid-price" min="100" placeholder="Enter your price" required>
+                <small id="bid-price-helper" class="helper-text">Budget constraint: ₹5,00,000</small>
+              </div>
+
+              <div class="form-group">
+                <label for="bid-pitch">Short Pitch & Value Proposition</label>
+                <textarea id="bid-pitch" rows="4" placeholder="Why should this client choose you? Explain your setup, materials, or special offers..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-secondary btn-block">
+                <i data-lucide="shield-check"></i> Submit Bid
+              </button>
+            </form>
+          </div>
+
+          <!-- Select Auction Prompt -->
+          <div id="vendor-bid-prompt" class="select-auction-prompt animate-slide-in delay-1">
+            <div class="prompt-icon">
+              <i data-lucide="arrow-left-right"></i>
+            </div>
+            <h3>Select a live auction from the list to submit your pitch and bid price</h3>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast hidden">
+    <i data-lucide="info" id="toast-icon"></i>
+    <span id="toast-message">Message here...</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
