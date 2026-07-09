@@ -58,6 +58,8 @@ body {
   left: -15vw;
   pointer-events: none;
   z-index: -1;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 
 .glow-bg-2 {
@@ -70,6 +72,8 @@ body {
   right: -15vw;
   pointer-events: none;
   z-index: -1;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 
 /* App Container */
@@ -197,13 +201,15 @@ textarea:focus-visible {
 /* Cards (Glassmorphic panels) */
 .glass-card {
   background: var(--panel-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: 1px solid var(--border-color);
   border-radius: 1rem;
   padding: 2rem;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
   transition: var(--transition-smooth);
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 
 .glass-card:hover {

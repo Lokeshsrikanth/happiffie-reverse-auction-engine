@@ -16,6 +16,7 @@ async function main() {
     { name: 'Budget Decorators', category: 'decor', rating: 3.5, responseRate: 0.80, responseCount: 20 },
     { name: 'Sparkle Lights & Decor', category: 'decor', rating: 4.2, responseRate: 0.88, responseCount: 30 },
     { name: 'Traditional Decors Chennai', category: 'decor', rating: 4.6, responseRate: 0.90, responseCount: 15 },
+    { name: 'Amateur Decorators', category: 'decor', rating: 2.5, responseRate: 0.40, responseCount: 2 },
     
     { name: 'Royal Catering Services', category: 'catering', rating: 4.9, responseRate: 0.98, responseCount: 120 },
     { name: 'Standard Catering', category: 'catering', rating: 4.0, responseRate: 0.75, responseCount: 15 },
@@ -118,6 +119,12 @@ async function main() {
       price: 520000, // Over budget
       pitch: 'Absolute royal experience, custom wooden carved mandapam, standard high-grade fresh flowers.',
       timeOffsetMs: 23 * 60 * 60 * 1000, // submitted close to deadline (23 hours after creation)
+    },
+    {
+      vendorName: 'Amateur Decorators',
+      price: 495000, // Near budget ceiling (₹500,000)
+      pitch: 'We are very new and still learning the ropes, but we can do a basic job for you near budget ceiling.',
+      timeOffsetMs: 23 * 60 * 60 * 1000 + 55 * 60 * 1000, // 5 minutes before deadline
     },
   ];
 

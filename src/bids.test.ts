@@ -91,6 +91,27 @@ describe('Reverse Auction System Tests', () => {
 
       expect(scoreBetter).toBeGreaterThan(scoreWorse);
     });
+
+    it('should calculate a score for a deliberately weak bid that is meaningfully lower than a strong bid', () => {
+      const strongBid = {
+        price: 80000,
+        createdAt: new Date('2026-07-09T10:00:00Z'), // early
+        vendor: { rating: 4.8, responseRate: 0.95, responseCount: 45 },
+      };
+
+      const weakBid = {
+        price: 99000, // close to budget limit (100k)
+        createdAt: new Date('2026-07-09T20:55:00Z'), // close to deadline (20:55 of 21:00)
+        vendor: { rating: 2.5, responseRate: 0.40, responseCount: 2 },
+      };
+
+      const scoreStrong = calculateBidScore(strongBid, requirement);
+      const scoreWeak = calculateBidScore(weakBid, requirement);
+
+      // Assert score spread is meaningful (e.g. difference is greater than 0.30 or 30 points out of 100)
+      const diff = scoreStrong - scoreWeak;
+      expect(diff).toBeGreaterThan(0.30);
+    });
   });
 
   // ==========================================

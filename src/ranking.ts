@@ -28,10 +28,16 @@ export interface RequirementInput {
  */
 export function calculateBidScore(bid: BidInput, requirement: RequirementInput): number {
   // 1. Price Score (50% weight)
-  // Normalizes the price relative to budget. Lower price -> higher score.
-  const priceScore = requirement.budget > 0 
-    ? (requirement.budget - bid.price) / requirement.budget 
-    : 0;
+  // Maps bids at budget to a base score of 0.6. Bids with a 30% or greater discount get 1.0+.
+  // Bids above budget are penalized by 0.5.
+  let priceScore = 0;
+  if (requirement.budget > 0) {
+    const priceScoreBase = (requirement.budget - bid.price) / (requirement.budget * 0.3);
+    priceScore = 0.6 + 0.4 * priceScoreBase;
+    if (bid.price > requirement.budget) {
+      priceScore -= 0.5; // Apply over-budget penalty
+    }
+  }
 
   // 2. Rating Score (30% weight)
   // Normalizes vendor rating (1 to 5 scale) to (0 to 1 scale).
