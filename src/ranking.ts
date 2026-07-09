@@ -21,10 +21,15 @@ export interface RequirementInput {
  *   Score = (0.50 * PriceScore) + (0.30 * RatingScore) + (0.15 * ResponseHistoryScore) + (0.05 * TimingScore)
  * 
  * Where:
- *   - PriceScore = (Budget - Price) / Budget
+ *   - PriceScore (before over-budget penalty):
+ *       priceScoreBase = (Budget - Price) / (Budget * 0.3)
+ *       priceScore = 0.6 + 0.4 * priceScoreBase
+ *     If Price > Budget: priceScore -= 0.5 (over-budget penalty)
  *   - RatingScore = (Rating - 1) / 4
  *   - ResponseHistoryScore = (ResponseRate * 0.7) + (min(ResponseCount, 50) / 50 * 0.3)
  *   - TimingScore = (Deadline - BidTime) / (Deadline - RequirementCreatedAt)
+ * 
+ * NOTE: keep this docstring in sync with the code below if the formula changes.
  */
 export function calculateBidScore(bid: BidInput, requirement: RequirementInput): number {
   // 1. Price Score (50% weight)

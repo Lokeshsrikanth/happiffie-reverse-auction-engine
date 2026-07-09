@@ -133,11 +133,11 @@ The following routes are fully implemented and verified:
 
 ### 1. `GET /api/requirements`
 * **Description**: List all requirements with their bids.
-* **Example Response**:
+* **Example Live Response**:
 ```json
 [
   {
-    "id": "fc55b2e2-6c4f-4d06-ae3c-c8128aebbc3b",
+    "id": "592351bc-dd20-47ea-ada7-a5ce78992301",
     "title": "Wedding Decorator, Chennai",
     "description": "Traditional theme wedding decoration for 500 guests.",
     "category": "decor",
@@ -145,21 +145,65 @@ The following routes are fully implemented and verified:
     "guestCount": 500,
     "budget": 500000,
     "theme": "Traditional",
-    "deadline": "2026-07-10T03:57:28.468Z",
+    "deadline": "2026-07-10T05:43:00.370Z",
     "status": "OPEN",
-    "createdAt": "2026-07-09T03:57:28.468Z",
-    "updatedAt": "2026-07-09T03:57:28.470Z",
+    "createdAt": "2026-07-09T05:43:00.370Z",
+    "updatedAt": "2026-07-09T05:43:00.371Z",
     "bids": [
       {
-        "id": "798afcae-cf2f-413f-ae69-a2a646e5501f",
-        "requirementId": "fc55b2e2-6c4f-4d06-ae3c-c8128aebbc3b",
-        "vendorId": "b72dccfb-09c3-455f-a1f0-6b6a51f823a5",
+        "id": "9ae09804-3dea-4d19-b85a-e7c952bc009f",
+        "requirementId": "592351bc-dd20-47ea-ada7-a5ce78992301",
+        "vendorId": "82ed84b5-c8d4-48f8-87b4-06f53d0824d8",
         "price": 480000,
         "pitch": "Elite floral and traditional decors with premium imported marigolds and roses. We have 10+ years experience in South Indian weddings.",
-        "rankScore": 0.4932,
+        "rankScore": 0.7998,
         "status": "PENDING",
-        "createdAt": "2026-07-09T04:57:28.468Z",
-        "updatedAt": "2026-07-09T03:57:28.478Z"
+        "createdAt": "2026-07-09T06:43:00.370Z",
+        "updatedAt": "2026-07-09T05:43:00.614Z"
+      },
+      {
+        "id": "79778114-ac4b-4803-adfe-6fb9fb7776c6",
+        "requirementId": "592351bc-dd20-47ea-ada7-a5ce78992301",
+        "vendorId": "46aadf4f-c3dd-4994-aee1-357833ec3a39",
+        "price": 390000,
+        "pitch": "Best price traditional setup with high-quality artificial and fresh flower mix. Customizable lighting layout included.",
+        "rankScore": 0.782,
+        "status": "PENDING",
+        "createdAt": "2026-07-09T07:43:00.370Z",
+        "updatedAt": "2026-07-09T05:43:00.734Z"
+      },
+      {
+        "id": "f88f654e-9bcd-4f94-8911-87b8171a7ef6",
+        "requirementId": "592351bc-dd20-47ea-ada7-a5ce78992301",
+        "vendorId": "2dac7707-b17c-4c12-a95b-ac4c186c30b2",
+        "price": 450000,
+        "pitch": "Stunning LED light backdrop, traditional kolam entrance, and stage floral arrangements. Full setup & cleanup included.",
+        "rankScore": 0.7677,
+        "status": "PENDING",
+        "createdAt": "2026-07-09T09:43:00.370Z",
+        "updatedAt": "2026-07-09T05:43:00.794Z"
+      },
+      {
+        "id": "3e2c9e93-3fb8-4dcd-a642-1e24682bd1a1",
+        "requirementId": "592351bc-dd20-47ea-ada7-a5ce78992301",
+        "vendorId": "6456e552-86b0-4dd4-8575-a096945231dc",
+        "price": 520000,
+        "pitch": "Absolute royal experience, custom wooden carved mandapam, standard high-grade fresh flowers.",
+        "rankScore": 0.4034,
+        "status": "PENDING",
+        "createdAt": "2026-07-10T04:43:00.370Z",
+        "updatedAt": "2026-07-09T05:43:00.855Z"
+      },
+      {
+        "id": "9fd0782d-440e-424d-96ca-3024f424c749",
+        "requirementId": "592351bc-dd20-47ea-ada7-a5ce78992301",
+        "vendorId": "7a317623-920f-4e41-9bc5-7876de3e84af",
+        "price": 495000,
+        "pitch": "We are very new and still learning the ropes, but we can do a basic job for you near budget ceiling.",
+        "rankScore": 0.4631,
+        "status": "PENDING",
+        "createdAt": "2026-07-10T05:38:00.370Z",
+        "updatedAt": "2026-07-09T05:43:00.915Z"
       }
     ],
     "result": null
@@ -218,7 +262,7 @@ The following routes are fully implemented and verified:
   "vendorId": "6f181785-9ab5-4359-8ed0-f953357d1b97",
   "price": 420000,
   "pitch": "Hey there! We can offer a very high quality traditional setup for 4.2L.",
-  "rankScore": 0.4195,
+  "rankScore": 0.7967,
   "status": "PENDING",
   "createdAt": "2026-07-09T03:58:06.203Z",
   "updatedAt": "2026-07-09T03:58:06.208Z"
@@ -227,29 +271,92 @@ The following routes are fully implemented and verified:
 
 ### 4. `GET /api/requirements/:id/bids`
 * **Description**: Fetch all bids for a requirement ranked by `rankScore` desc.
-* **Example Response**:
+* **Example Live Response (Wedding Decorator, Chennai)**:
 ```json
 {
   "requirement": {
-    "id": "fc55b2e2-6c4f-4d06-ae3c-c8128aebbc3b",
+    "id": "592351bc-dd20-47ea-ada7-a5ce78992301",
     "title": "Wedding Decorator, Chennai",
-    "status": "OPEN"
+    "description": "Traditional theme wedding decoration for 500 guests.",
+    "category": "decor",
+    "location": "Chennai",
+    "guestCount": 500,
+    "budget": 500000,
+    "theme": "Traditional",
+    "deadline": "2026-07-10T05:43:00.370Z",
+    "status": "OPEN",
+    "createdAt": "2026-07-09T05:43:00.370Z",
+    "updatedAt": "2026-07-09T05:43:00.371Z"
   },
   "bids": [
     {
-      "id": "798afcae-cf2f-413f-ae69-a2a646e5501f",
+      "id": "9ae09804-3dea-4d19-b85a-e7c952bc009f",
+      "requirementId": "592351bc-dd20-47ea-ada7-a5ce78992301",
+      "vendorId": "82ed84b5-c8d4-48f8-87b4-06f53d0824d8",
       "price": 480000,
-      "rankScore": 0.4932,
+      "pitch": "Elite floral and traditional decors with premium imported marigolds and roses. We have 10+ years experience in South Indian weddings.",
+      "rankScore": 0.7998,
+      "status": "PENDING",
+      "createdAt": "2026-07-09T06:43:00.370Z",
+      "updatedAt": "2026-07-09T05:43:00.614Z",
       "vendor": {
         "name": "Elite Decorators"
       }
     },
     {
-      "id": "25f8885a-7eea-44ac-9303-1f440dec2007",
+      "id": "79778114-ac4b-4803-adfe-6fb9fb7776c6",
+      "requirementId": "592351bc-dd20-47ea-ada7-a5ce78992301",
+      "vendorId": "46aadf4f-c3dd-4994-aee1-357833ec3a39",
+      "price": 390000,
+      "pitch": "Best price traditional setup with high-quality artificial and fresh flower mix. Customizable lighting layout included.",
+      "rankScore": 0.782,
+      "status": "PENDING",
+      "createdAt": "2026-07-09T07:43:00.370Z",
+      "updatedAt": "2026-07-09T05:43:00.734Z",
+      "vendor": {
+        "name": "Budget Decorators"
+      }
+    },
+    {
+      "id": "f88f654e-9bcd-4f94-8911-87b8171a7ef6",
+      "requirementId": "592351bc-dd20-47ea-ada7-a5ce78992301",
+      "vendorId": "2dac7707-b17c-4c12-a95b-ac4c186c30b2",
       "price": 450000,
-      "rankScore": 0.4511,
+      "pitch": "Stunning LED light backdrop, traditional kolam entrance, and stage floral arrangements. Full setup & cleanup included.",
+      "rankScore": 0.7677,
+      "status": "PENDING",
+      "createdAt": "2026-07-09T09:43:00.370Z",
+      "updatedAt": "2026-07-09T05:43:00.794Z",
       "vendor": {
         "name": "Sparkle Lights & Decor"
+      }
+    },
+    {
+      "id": "9fd0782d-440e-424d-96ca-3024f424c749",
+      "requirementId": "592351bc-dd20-47ea-ada7-a5ce78992301",
+      "vendorId": "7a317623-920f-4e41-9bc5-7876de3e84af",
+      "price": 495000,
+      "pitch": "We are very new and still learning the ropes, but we can do a basic job for you near budget ceiling.",
+      "rankScore": 0.4631,
+      "status": "PENDING",
+      "createdAt": "2026-07-10T05:38:00.370Z",
+      "updatedAt": "2026-07-09T05:43:00.915Z",
+      "vendor": {
+        "name": "Amateur Decorators"
+      }
+    },
+    {
+      "id": "3e2c9e93-3fb8-4dcd-a642-1e24682bd1a1",
+      "requirementId": "592351bc-dd20-47ea-ada7-a5ce78992301",
+      "vendorId": "6456e552-86b0-4dd4-8575-a096945231dc",
+      "price": 520000,
+      "pitch": "Absolute royal experience, custom wooden carved mandapam, standard high-grade fresh flowers.",
+      "rankScore": 0.4034,
+      "status": "PENDING",
+      "createdAt": "2026-07-10T04:43:00.370Z",
+      "updatedAt": "2026-07-09T05:43:00.855Z",
+      "vendor": {
+        "name": "Traditional Decors Chennai"
       }
     }
   ]
@@ -292,12 +399,18 @@ The following routes are fully implemented and verified:
 
 Ranking is a deterministic weighted formula rather than an LLM-based system. This was a deliberate choice to prioritize transparency, auditability, zero inference cost, and predictable behavior for a marketplace decision that involves real money. An LLM-based re-ranking or bid-quality-summary layer is a natural future enhancement but is explicitly NOT implemented in this version.
 
-The exact ranking algorithm is located in [src/ranking.ts](file:///Users/apple/developer/happiffie-reverse-auction-engine/src/ranking.ts#L29-L62).
+The exact ranking algorithm is located in [src/ranking.ts](file:///Users/apple/developer/happiffie-reverse-auction-engine/src/ranking.ts#L29-L69).
 
 ### Formula:
 $$\text{Score} = (0.50 \times \text{PriceScore}) + (0.30 \times \text{RatingScore}) + (0.15 \times \text{ResponseHistoryScore}) + (0.05 \times \text{TimingScore})$$
 
-* **Price Score** (50% weight): `(Budget - Price) / Budget`. Higher score for lower prices.
+* **Price Score** (50% weight):
+  $$\text{priceScoreBase} = \frac{\text{Budget} - \text{Price}}{\text{Budget} \times 0.3}$$
+  $$\text{priceScore} = 0.6 + 0.4 \times \text{priceScoreBase}$$
+  If $\text{Price} > \text{Budget}$: $\text{priceScore} = \text{priceScore} - 0.5$ (over-budget penalty)
+
+  *In plain terms: a bid exactly at budget scores a base 0.6. Every 30% of budget saved below the budget adds up to 0.4 more (so a bid ~30% under budget approaches 1.0). A bid that exceeds the budget gets a flat 0.5 penalty subtracted, which is why over-budget bids rank far lower even before considering rating or history.*
+
 * **Rating Score** (30% weight): `(Rating - 1) / 4`. Maps the 1-5 star scale onto 0-1.
 * **Response History Score** (15% weight): `(ResponseRate * 0.7) + (min(ResponseCount, 50) / 50 * 0.3)`. Combines response percentage and bid count.
 * **Timing Score** (5% weight): `(Deadline - BidTime) / (Deadline - CreatedAt)`. Rewards early bid entries and penalizes sniping.
@@ -313,19 +426,20 @@ Automated tests are configured via **Vitest** in [src/bids.test.ts](file:///User
 2. **Rating Unit Test**: Asserts that higher rating scores yield higher overall bid scores when price, timing, and response history are constant.
 3. **Timing Unit Test**: Asserts that earlier bids receive a timing boost compared to late-stage bids, keeping other factors constant.
 4. **Response History Unit Test**: Asserts that vendors with higher response rates and history volumes score higher when price, rating, and timing are constant.
-5. **Rejection Integration Test**: Verifies that bids placed after the requirement deadline are blocked and return a `400 Bad Request`.
-6. **Acceptance Flow Integration Test**: Verifies that the accept bid transaction atomically updates requirement status to `ACCEPTED`, target bid to `ACCEPTED`, other bids to `REJECTED`, and creates an `AuctionResult` with the computed savings.
+5. **Score Spread Unit Test**: Asserts that a deliberately weak bid (near ceiling price, low rating, low response rate/volume, and late timing) scores at least 30 points (0.30) lower than a strong bid on the same requirement.
+6. **Rejection Integration Test**: Verifies that bids placed after the requirement deadline are blocked and return a `400 Bad Request`.
+7. **Acceptance Flow Integration Test**: Verifies that the accept bid transaction atomically updates requirement status to `ACCEPTED`, target bid to `ACCEPTED`, other bids to `REJECTED`, and creates an `AuctionResult` with the computed savings.
 
 ### Real Automated Test Output:
 ```
  RUN  v1.6.1 /Users/apple/developer/happiffie-reverse-auction-engine
 
- ✓ src/bids.test.ts  (6 tests) 80ms
+ ✓ src/bids.test.ts  (7 tests) 91ms
 
  Test Files  1 passed (1)
-      Tests  6 passed (6)
-   Start at  09:55:37
-   Duration  584ms (transform 90ms, setup 0ms, collect 110ms, tests 80ms, environment 0ms, prepare 102ms)
+      Tests  7 passed (7)
+   Start at  11:11:45
+   Duration  616ms (transform 87ms, setup 0ms, collect 109ms, tests 91ms, environment 0ms, prepare 102ms)
 ```
 
 ---
