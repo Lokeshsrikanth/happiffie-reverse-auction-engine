@@ -1,7 +1,7 @@
 # Happiffie Reverse Auction System — Technical Design Document
 
 * **GitHub Repository**: [happiffie-reverse-auction-engine](https://github.com/Lokeshsrikanth/happiffie-reverse-auction-engine.git)
-* **Live Application URL**: *(To be updated after deployment)*
+* **Live Application URL**: [happiffie-reverse-auction-engine.onrender.com](https://happiffie-reverse-auction-engine.onrender.com)
 
 ---
 

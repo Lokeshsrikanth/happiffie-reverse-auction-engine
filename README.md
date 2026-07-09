@@ -3,7 +3,7 @@
 A fully functional, verified reverse auction system prototype for Happiffie (celebration and events marketplace). Clients can post their event requirements, qualified vendors submit competing bids (pricing + pitch), and the engine ranks them in real-time.
 
 * **GitHub Repository**: [happiffie-reverse-auction-engine](https://github.com/Lokeshsrikanth/happiffie-reverse-auction-engine.git)
-* **Live Application URL**: *(To be updated after deployment)*
+* **Live Application URL**: [happiffie-reverse-auction-engine.onrender.com](https://happiffie-reverse-auction-engine.onrender.com)
 
 ---
 
