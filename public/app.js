@@ -212,7 +212,15 @@ async function loadRankedBids(requirementId) {
     // Set header details
     selectedReqTitle.textContent = requirement.title;
     selectedReqBudget.textContent = `Budget: ${formatCurrency(requirement.budget)}`;
-    selectedReqDeadline.textContent = getRemainingTimeText(requirement.deadline);
+    const timeText = getRemainingTimeText(requirement.deadline);
+    selectedReqDeadline.textContent = timeText;
+    if (timeText === 'Closed') {
+      selectedReqDeadline.className = 'helper-danger';
+    } else if (!timeText.includes('d') && (timeText.includes('m') || parseInt(timeText, 10) < 3)) {
+      selectedReqDeadline.className = 'urgent-warning';
+    } else {
+      selectedReqDeadline.className = '';
+    }
     
     // Status Badge
     selectedReqBadge.className = 'badge';
@@ -293,7 +301,7 @@ async function loadRankedBids(requirementId) {
           </div>
           <div class="bid-pricing">
             <div class="bid-price">${formatCurrency(bid.price)}</div>
-            <div class="bid-score">Score: ${bid.rankScore.toFixed(4)}</div>
+            <div class="bid-score">Match Score: ${(bid.rankScore * 100).toFixed(1)} / 100</div>
           </div>
         </div>
         <p class="bid-pitch-text">"${bid.pitch}"</p>
